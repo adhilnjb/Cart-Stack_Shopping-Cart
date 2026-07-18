@@ -11,7 +11,7 @@ export function CartLineItem({ item, readOnly = false }: { item: CartItem; readO
   return (
     <div className="flex items-center gap-3 py-3">
       <img src={item.thumbnail} alt={item.title} className="h-14 w-14 rounded-lg object-cover" />
-
+ 
       <div className="min-w-0 flex-1">
         <p className="truncate text-sm font-medium text-ink">{item.title}</p>
         <p className="font-numeric text-xs text-ink-soft">{formatCurrency(item.price)} each</p>
