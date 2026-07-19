@@ -1,4 +1,4 @@
-# Fieldstock — Shopping Cart
+# Cart Stack — Shopping Cart
 
 An intern-assignment shopping cart application: browse products, search/filter,
 manage a cart, and complete a 3-step checkout.
