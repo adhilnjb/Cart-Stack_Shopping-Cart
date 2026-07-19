@@ -1,102 +1,32 @@
 import type { CartItem } from '@/types/cart'
-import { formatCurrency } from '@/lib/format'
-import { useCartStore, MIN_QUANTITY, MAX_QUANTITY } from '@/store/cartStore'
+import type { CartTotals } from '@/store/cartStore'
+import { CartLineItem } from '@/components/cart/CartLineItem'
+import { CartSummary } from '@/components/cart/CartSummary'
+import { Button } from '@/components/ui/Button'
 
-function MinusIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="h-3 w-3">
-      <path strokeLinecap="round" d="M5 12h14" />
-    </svg>
-  )
+interface CartReviewStepProps {
+  items: CartItem[]
+  totals: CartTotals
+  onNext: () => void
 }
 
-function PlusIcon() {
+export function CartReviewStep({ items, totals, onNext }: CartReviewStepProps) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="h-3 w-3">
-      <path strokeLinecap="round" d="M12 5v14M5 12h14" />
-    </svg>
-  )
-}
-
-function TrashIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="h-4 w-4">
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6h16Z"
-      />
-    </svg>
-  )
-}
-
-export function CartLineItem({ item }: { item: CartItem }) {
-  const increaseQuantity = useCartStore((state) => state.increaseQuantity)
-  const decreaseQuantity = useCartStore((state) => state.decreaseQuantity)
-  const removeItem = useCartStore((state) => state.removeItem)
-
-  const lineTotal = item.price * item.quantity
-
-  return (
-    <div className="flex flex-col gap-2 py-3 sm:flex-row sm:items-center sm:gap-4 sm:py-4">
-      {/* Top row on mobile: image + name + price. Inline on desktop. */}
-      <div className="flex flex-1 items-start gap-3 sm:items-center">
-        <img
-          src={item.thumbnail}
-          alt={item.title}
-          className="h-14 w-14 shrink-0 rounded-md object-cover sm:h-16 sm:w-16"
-        />
-        <div className="min-w-0 flex-1">
-          <h3 className="line-clamp-2 text-sm font-medium text-ink">{item.title}</h3>
-          <p className="text-xs text-ink-soft">{formatCurrency(item.price)} each</p>
+    <div className="grid gap-4 sm:gap-6 md:grid-cols-[1fr_320px]">
+      <div className="rounded-lg sm:rounded-xl border border-border bg-surface p-3 sm:p-4">
+        <h2 className="mb-2 text-sm font-semibold text-ink">Items in your cart</h2>
+        <div className="divide-y divide-border">
+          {items.map((item) => (
+            <CartLineItem key={item.id} item={item} />
+          ))}
         </div>
-
-        {/* Delete icon: mobile only, next to name */}
-        <button
-          onClick={() => removeItem(item.id)}
-          aria-label={`Remove ${item.title} from cart`}
-          className="shrink-0 rounded-md p-1.5 text-ink-soft transition-colors hover:bg-danger-soft hover:text-danger sm:hidden"
-        >
-          <TrashIcon />
-        </button>
       </div>
 
-      {/* Bottom row on mobile: stepper + total. Inline on desktop. */}
-      <div className="flex items-center justify-between gap-3 pl-[68px] sm:justify-end sm:gap-4 sm:pl-0">
-        <div className="flex items-center gap-1 rounded-lg border border-border">
-          <button
-            onClick={() => decreaseQuantity(item.id)}
-            disabled={item.quantity <= MIN_QUANTITY}
-            aria-label="Decrease quantity"
-            className="flex h-7 w-7 items-center justify-center text-ink-soft disabled:opacity-30 sm:h-8 sm:w-8"
-          >
-            <MinusIcon />
-          </button>
-          <span className="font-numeric w-5 text-center text-sm font-semibold text-ink">
-            {item.quantity}
-          </span>
-          <button
-            onClick={() => increaseQuantity(item.id)}
-            disabled={item.quantity >= MAX_QUANTITY}
-            aria-label="Increase quantity"
-            className="flex h-7 w-7 items-center justify-center text-ink-soft disabled:opacity-30 sm:h-8 sm:w-8"
-          >
-            <PlusIcon />
-          </button>
-        </div>
-
-        <span className="font-numeric w-16 shrink-0 text-right text-sm font-semibold text-ink sm:w-20">
-          {formatCurrency(lineTotal)}
-        </span>
-
-        {/* Delete icon: desktop only, at row end */}
-        <button
-          onClick={() => removeItem(item.id)}
-          aria-label={`Remove ${item.title} from cart`}
-          className="hidden shrink-0 rounded-md p-1.5 text-ink-soft transition-colors hover:bg-danger-soft hover:text-danger sm:block"
-        >
-          <TrashIcon />
-        </button>
+      <div className="space-y-3 sm:space-y-4">
+        <CartSummary totals={totals} />
+        <Button onClick={onNext} disabled={!totals.meetsMinimum} className="w-full">
+          Continue to shipping
+        </Button>
       </div>
     </div>
   )
