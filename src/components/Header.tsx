@@ -22,7 +22,7 @@ export default function Header({ onCartClick }: HeaderProps) {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
         <Link to="/" className="flex items-baseline gap-2" onClick={() => setMenuOpen(false)}>
           <span className="text-xl font-semibold tracking-tight text-ink" style={{ fontFamily: 'var(--font-display)' }}>
-            Fieldstock
+            Cart Stack
           </span>
           <span className="hidden text-xs text-ink-soft sm:inline">everyday goods, sensibly priced</span>
         </Link>
