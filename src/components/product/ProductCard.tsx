@@ -47,7 +47,7 @@ export function ProductCard({ product }: { product: Product }) {
           disabled={atLimit}
           aria-label={`Add ${product.title} to cart`}
         >
-          {atLimit ? 'Limit reached (5)' : quantityInCart > 0 ? `Add another (${quantityInCart} in cart)` : 'Add to cart'}
+          {atLimit ? 'Limit reached (5)' : quantityInCart > 0 ? `Add  (${quantityInCart} in cart)` : 'Add to cart'}
         </Button>
       </div>
     </div>
