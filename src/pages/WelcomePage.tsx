@@ -46,7 +46,7 @@ const HIGHLIGHTS = [
 ]
 
 const STATS = [
-  { label: 'Products', value: '30+' },
+  { label: 'Products', value: '100+' },
   { label: 'Checkout steps', value: '3' },
   { label: 'Hidden fees', value: '0' },
 ]
@@ -54,15 +54,15 @@ const STATS = [
 const QUOTES = [
   {
     quote: 'A good purchase is quiet — it just works, and you stop thinking about it.',
-    author: 'The Fieldstock Ethos',
+    author: 'The Cart Stack Ethos',
   },
   {
     quote: 'Buy less, choose well. A short list of honest products beats an endless feed.',
-    author: 'The Fieldstock Ethos',
+    author: 'The Cart Stack Ethos',
   },
   {
     quote: 'The best checkout is the one you barely notice happened.',
-    author: 'The Fieldstock Ethos',
+    author: 'The Cart Stack Ethos',
   },
 ]
 
@@ -120,7 +120,7 @@ export default function WelcomePage() {
               href="#highlights"
               className="inline-flex items-center justify-center gap-2 rounded-md border border-border bg-surface px-5 py-3 text-sm font-semibold text-ink transition-colors hover:border-primary hover:text-primary"
             >
-              Why Fieldstock
+              Why Cart Stack?
             </a>
           </div>
 
@@ -176,21 +176,6 @@ export default function WelcomePage() {
               <p className="mt-1 text-sm text-ink-soft">{item.description}</p>
             </div>
           ))}
-        </div>
-
-        <div className="mt-10 flex flex-col items-center justify-between gap-4 rounded-xl border border-border bg-primary-soft p-6 text-center sm:flex-row sm:text-left">
-          <div>
-            <h2 className="text-lg font-semibold text-ink" style={{ fontFamily: 'var(--font-display)' }}>
-              Ready to browse?
-            </h2>
-            <p className="text-sm text-ink-soft">Jump into the full catalog — search, filter, and add to cart.</p>
-          </div>
-          <Link
-            to="/shop"
-            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-light"
-          >
-            Start shopping
-          </Link>
         </div>
       </section>
     </main>

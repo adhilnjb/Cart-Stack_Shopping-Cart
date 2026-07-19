@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Fieldstock — Shopping Cart
 
 An intern-assignment shopping cart application: browse products, search/filter,
@@ -146,3 +147,6 @@ src/
 ├── types/                  # Product / cart types (+ product Zod schema)
 └── lib/format.ts           # currency formatting
 ```
+=======
+# Cart-Stack_Shopping-Cart
+>>>>>>> 374189a467cf4bd6bc8d1446ba18a183922f6366
