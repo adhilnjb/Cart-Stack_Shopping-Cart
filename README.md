@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Fieldstock — Shopping Cart
 
 An intern-assignment shopping cart application: browse products, search/filter,
@@ -130,6 +129,7 @@ Push this repo to GitHub, then connect it to one of:
 All three auto-detect this as a Vite project. No environment variables are
 required since the product API is public.
 
+## Project structure
 
 ```
 src/
@@ -147,6 +147,3 @@ src/
 ├── types/                  # Product / cart types (+ product Zod schema)
 └── lib/format.ts           # currency formatting
 ```
-=======
-# Cart-Stack_Shopping-Cart
->>>>>>> 374189a467cf4bd6bc8d1446ba18a183922f6366
