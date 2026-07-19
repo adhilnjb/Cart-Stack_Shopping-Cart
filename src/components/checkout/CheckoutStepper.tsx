@@ -1,3 +1,5 @@
+import { Fragment } from 'react'
+
 const STEPS = ['Cart Review', 'Shipping', 'Payment Summary'] as const
 
 export function CheckoutStepper({ currentStep }: { currentStep: number }) {
@@ -5,15 +7,15 @@ export function CheckoutStepper({ currentStep }: { currentStep: number }) {
 
   return (
     <div className="mb-6 sm:mb-8">
-      <ol className="flex w-full items-center px-1">
+      <ol className="flex items-center">
         {STEPS.map((label, index) => {
           const stepNumber = index + 1
           const isComplete = stepNumber < currentStep
           const isCurrent = stepNumber === currentStep
 
           return (
-            <li key={label} className="flex flex-1 items-center last:flex-none">
-              <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+            <Fragment key={label}>
+              <li className="flex shrink-0 items-center gap-1.5 sm:gap-2">
                 <span
                   className={`font-numeric flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold sm:h-7 sm:w-7 sm:text-xs ${
                     isComplete
@@ -33,7 +35,8 @@ export function CheckoutStepper({ currentStep }: { currentStep: number }) {
                 >
                   {label}
                 </span>
-              </div>
+              </li>
+
               {stepNumber !== STEPS.length && (
                 <div
                   className={`mx-1.5 h-px min-w-[12px] flex-1 sm:mx-3 ${
@@ -41,7 +44,7 @@ export function CheckoutStepper({ currentStep }: { currentStep: number }) {
                   }`}
                 />
               )}
-            </li>
+            </Fragment>
           )
         })}
       </ol>
